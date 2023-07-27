@@ -2,7 +2,7 @@
 
 Repositorio que contiene los comandos (scripts) empleandos en el ambiente de R para el análisis de los datos morfológicos y fitoquímicos de _Piper auritum_ provenientes de diferentes comunidades Mayas del estados de Yucatán, México.
 
-La publicación es referente a Pérez-Herández et al. (2023). Botanical Sciences xxx (x): 1-40. Disponible en: https://doi.org/10.17129/botsci.3305
+La publicación es referente a Pérez-Herández et al. (2023). Botanical Sciences xxx (x): 1-40. Disponible en: https://doi.org/10.17129/botsci.3305 (por actualizar).
 
 ## Antecendentes:
 
