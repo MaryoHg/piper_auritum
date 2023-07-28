@@ -167,5 +167,5 @@ plot_setts <- ggplot2::theme(panel.grid = element_blank(), #panel.grid.major.y =
 
 
 	# base::save.image(file = 'rdatabases/Figs_2-y-4_Usos-y-Manejos.RData')
-	base::load(file = 'rdatabases/Figs_2-y-4_Usos-y-Manejos.RData')
+	# base::load(file = 'rdatabases/Figs_2-y-4_Usos-y-Manejos.RData')
 	
