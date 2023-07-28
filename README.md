@@ -7,3 +7,6 @@ La publicación es referente a Pérez-Herández et al. (2023). Botanical Science
 ## Antecendentes:
 
 - La domesticación de las plantas es un proceso continuo, multidireccional, regido por la selección y el manejo. Elegimos a la planta aromática Piper auritum, utilizada en la cocina y la medicina tradicional, para caracterizar su nivel de domesticación basándonos en su importancia cultural, prácticas de manejo y rasgos de sus hojas en poblaciones manejadas y ruderales. 
+
+
+![Figura 5. Análisis de componentes principales del contenido de aceite esencial de _Piper auritum_](https://github.com/MaryoHg/piper_auritum/blob/main/Figures/Fig.5.PCA-acei_esenciales.png?raw=true)
