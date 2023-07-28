@@ -7,29 +7,19 @@
 
 options(scipen = 10000, digits = 3, ggrepel.max.overlaps = Inf)
 set.seed(9999)
-# source('/Users/mariohg/Dropbox/R_functions/mytheme-PCA.R')
 library(vegan); library(FactoMineR); library(tidyverse); library(gridExtra)
-# load('/Users/mariohg/Documents/PROJECTS/lupe_data/rdatabases/Rosa-PCA-Oils.RData') 
-metadata <- read.csv('./data/morfometrics-database.csv')[,1:4]; head(metadata)
-
+base::load('rdatabases/Fig.5-PCA-aceites-esenciales.RData')
 
 
 # 2. Loading database -----------------------------------------------------
 
-	# Load the raw database, change the first colname, merge with metadata, filter "medicinal" & "condimento" levels, and
-	# rename levels of CATEGORIAS to: "Condimento", "Medicinal".
+	# Load the raw database
 
-	data <- readxl::read_xlsx('./data/ACEITES_SITIOS.xlsx', sheet = 1)[,-30] %>% 
-		dplyr::rename (TRATAMIENTO = SITIO) %>% 
-		dplyr::inner_join(x = metadata, by = "TRATAMIENTO") %>% 
-		dplyr::filter(CATEGORIAS %in% c("MEDICINAL", "CONDIMENTO")) %>% 
-		tibble::column_to_rownames(var = "TRATAMIENTO") %>% 
-		mutate(CATEGORIAS = factor(CATEGORIAS, levels = c("CONDIMENTO", "MEDICINAL"),
-					   labels = c("CULINARIO", "MEDICINAL"))); head(x = data, n = 3)
+	data <- read.table(file = 'data/db_Fig.5_PCA_aceites_esenciales.tsv', row.names = 1, header = T, sep = '\t')
+	
 	metadata <- data %>% 
 		tibble::rownames_to_column(var = "TRATAMIENTO") %>% 
 		select(1:4); head(metadata)
-
 
 # 3. Transform data and determine the Principal Component Analysis  -------
 
@@ -37,6 +27,7 @@ metadata <- read.csv('./data/morfometrics-database.csv')[,1:4]; head(metadata)
 	oil.pca <- FactoMineR::PCA(data[,8:ncol(data)], ncp = 4)
 
 	# 3.1. Get individuals coordinates and merge with their metadata
+	
 	sam.coords <- data.frame (oil.pca$ind$coord, check.names = F) %>% 
 		tibble::rownames_to_column(var = "TRATAMIENTO") %>% 
 		dplyr::inner_join(x = metadata, by = "TRATAMIENTO")
@@ -58,6 +49,7 @@ metadata <- read.csv('./data/morfometrics-database.csv')[,1:4]; head(metadata)
 
 
 # 4. Draw the Principal Component Analysis with ggplot2: PCA --------------
+	
 	p <- 
 	ggplot() + theme_bw ()+
 		labs (x = paste ("PC1 ", paste(base::round (oil.pca$eig[1,2], digits = 2), "%", sep = "")),
@@ -97,17 +89,9 @@ metadata <- read.csv('./data/morfometrics-database.csv')[,1:4]; head(metadata)
 	"P_value" = c(0.018, 0.140, 0.450),
 	"R2" = c(0.080, 0.003, 0.110)); stats_data
 	
-	# p + annotate(geom = "table", x = 8, y = 10, label = list(stats_data), vjust = 1, hjust = 0)
 	p + annotation_custom(tableGrob(stats_data, rows=NULL), 
 			      xmin=3, xmax=10, ymin=10, ymax=15)
 	ggplot2::ggsave(file = 'Figures/Fig.5.PCA-acei_esenciales.png', dpi = 300, device = "png", width = 7, height = 7)
-	
-	
-	# pdf('/Users/mariohg/Documents/PROJECTS/lupe_data/figures/Rosa-PCA-Oils.pdf', width = 10, height = 10, family = "Helvetica")
-	# p + geom_text(data = dat_text, mapping = aes(x = -Inf, y = y, label = label), hjust   = -0.1, #vjust   = -1,
-	# 	color = "black", size = 5, fontface = "bold")
-	# dev.off()
-	# 
 
 
 # 5. Multivariate analysis: perMANOVA -------------------------------------
@@ -121,5 +105,5 @@ metadata <- read.csv('./data/morfometrics-database.csv')[,1:4]; head(metadata)
 
 # 6. Saving the session of R environment ----------------------------------
 
-	base::save.image(file = 'rdatabases/Fig.5-PCA-aceites-esenciales.RData')
+	# base::save.image(file = 'rdatabases/Fig.5-PCA-aceites-esenciales.RData')
 	
