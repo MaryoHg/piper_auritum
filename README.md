@@ -1,6 +1,6 @@
 # Traditional uses and management practices of _Piper auritum_ in rural communities of Yucatan
 
-Repositorio que contiene los comandos (scripts) empleandos en el ambiente de R para el análisis de los datos morfológicos y fitoquímicos de _Piper auritum_ provenientes de diferentes comunidades Mayas del estados de Yucatán, México.
+Repositorio que contiene los comandos (scripts) empleandos en el ambiente de R para el análisis de los datos morfológicos y fitoquímicos de _Piper auritum_ provenientes de diferentes comunidades Mayas del estado de Yucatán, México.
 
 La publicación es referente a Pérez-Herández et al. (2023). Botanical Sciences xxx (x): 1-40. Disponible en: https://doi.org/10.17129/botsci.3305 (por actualizar).
 
